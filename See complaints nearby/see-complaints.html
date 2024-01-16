@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volunteer Dashboard</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #87CEEB, #FF69B4);
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    h1 {
+      text-align: center;
+      color: #008080;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .complaint-card {
+      background-color: #fff;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .complaint-card:hover {
+      transform: scale(1.05);
+    }
+
+    .complaint-card.crossed-out {
+      text-decoration: line-through;
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    .detailed-card {
+      display: none;
+      background-color: #fff;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 15px; /* Curved edges */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.5s ease-out forwards;
+      margin-bottom: 20px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      width: 70%; /* Adjust the width as needed */
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .button {
+      background-color: #008080;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #005555;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        max-width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        margin: 20px 10px;
+        padding: 10px;
+      }
+
+      form {
+        gap: 10px;
+      }
+
+      select {
+        padding: 8px;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" onclick="closeDetailedCard()">
+    <h1>Volunteer Dashboard</h1>
+    <form action="#" method="post">
+      <label for="volunteerState">Select State:</label>
+      <select id="volunteerState" name="volunteerState">
+        <option value="Andhra Pradesh">Andhra Pradesh</option>
+        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+        <option value="Assam">Assam</option>
+        <!-- ... (add more states and territories as needed) ... -->
+        <option value="Uttarakhand">Uttarakhand</option>
+        <option value="West Bengal">West Bengal</option>
+      </select>
+
+      <label for="volunteerLocality">Select Locality:</label>
+      <select id="volunteerLocality" name="volunteerLocality">
+        <option value="Locality 1">Locality 1</option>
+        <option value="Locality 2">Locality 2</option>
+        <option value="Locality 3">Locality 3</option>
+        <!-- ... (add more localities as needed) ... -->
+        <option value="Locality 7">Locality 7</option>
+      </select>
+    </form>
+
+    <!-- Add some spacing between locality and the first complaint -->
+    <div style="margin-bottom: 20px;"></div>
+
+    <!-- Use a unique identifier for each complaint card -->
+    <div class="complaint-card animated" onclick="showDetailedCard(this, 'complaint1')">
+      <h3>Type of Problem: Cleaning</h3>
+      <p>Locality: Locality 1</p>
+    </div>
+
+    <div class="complaint-card animated" onclick="showDetailedCard(this, 'complaint2')">
+      <h3>Type of Problem: Road Blockage</h3>
+      <p>Locality: Locality 2</p>
+    </div>
+
+    <div class="complaint-card animated" onclick="showDetailedCard(this, 'complaint3')">
+      <h3>Type of Problem: Stray Animals</h3>
+      <p>Locality: Locality 3</p>
+    </div>
+
+    <!-- ... (add more dummy complaints as needed) ... -->
+
+    <div class="complaint-card animated" onclick="showDetailedCard(this, 'complaint7')">
+      <h3>Type of Problem: Anything Else</h3>
+      <p>Locality: Locality 7</p>
+    </div>
+
+    <div class="detailed-card">
+      <h2>Detailed Complaint</h2>
+      <p><strong>Type of Problem:</strong> Cleaning</p>
+      <p><strong>Locality:</strong> Locality 1</p>
+      <p><strong>City:</strong> Sample City</p>
+      <p><strong>State:</strong> Sample State</p>
+      <p><strong>Country:</strong> Sample Country</p>
+      <p><strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac fermentum libero.</p>
+      <div class="buttons">
+        <button class="button" onclick="contribute('complaint1')">Contribute</button>
+        <button class="button" onclick="skip('complaint1')">Skip</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Function to show the detailed card
+    function showDetailedCard(card, complaintId) {
+      const detailedCard = document.querySelector('.detailed-card');
+      detailedCard.style.display = 'block';
+      // Prevent the click event from reaching the container and closing the card immediately
+      event.stopPropagation();
+    }
+
+    // Placeholder function for contributing action
+    function contribute(complaintId) {
+      const detailedCard = document.querySelector('.detailed-card');
+      detailedCard.style.display = 'none';
+      const complaintCard = document.querySelector(`.${complaintId}`);
+      complaintCard.classList.add('crossed-out');
+      alert(`Contribute button clicked for ${complaintId}`);
+    }
+
+    // Function to hide the detailed card on skip
+    function skip(complaintId) {
+      const detailedCard = document.querySelector('.detailed-card');
+      detailedCard.style.display = 'none';
+    }
+
+    // Function to close the detailed card when clicking outside
+    function closeDetailedCard() {
+      const detailedCard = document.querySelector('.detailed-card');
+      if (detailedCard.style.display === 'block') {
+        detailedCard.style.display = 'none';
+      }
+    }
+  </script>
+
+</body>
+</html>

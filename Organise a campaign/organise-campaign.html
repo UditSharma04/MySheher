@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Add this in the head section, below other script tags -->
+<script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDlC0jrZhfS_nbw8nAayBGypE5WgAimTBA",
+  authDomain: "mysheher-5ba34.firebaseapp.com",
+  databaseURL: "https://mysheher-5ba34-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "mysheher-5ba34",
+  storageBucket: "mysheher-5ba34.appspot.com",
+  messagingSenderId: "700302669775",
+  appId: "1:700302669775:web:78d55c32a1b2b556d0c4ba",
+  measurementId: "G-267WG9J4B5"
+  };
+
+  
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  
+  // Initialize Firestore
+  const db = firebase.firestore();
+</script>
+<script>
+  function submitCampaign() {
+    const organizationName = document.getElementById('organizationName').value;
+    const campaignName = document.getElementById('campaignName').value;
+    const description = document.getElementById('campaignDescription').value;
+    const type = document.getElementById('campaignType').value;
+    const location = document.getElementById('campaignLocation').value;
+    const timing = document.getElementById('campaignTiming').value;
+
+    // Add data to Firebase
+    db.collection("campaigns").add({
+      organizationName: organizationName,
+      campaignName: campaignName,
+      description: description,
+      type: type,
+      location: location,
+      timing: timing
+    })
+    .then(function(docRef) {
+      console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(function(error) {
+      console.error("Error adding document: ", error);
+    });
+
+    // Rest of the code remains the same...
+  }
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organize a Campaign</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #87CEEB, #FF69B4);
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    h1 {
+      text-align: center;
+      color: #008080;
+    }
+
+    .your-campaigns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .campaign-card, .event-card {
+      background-color: #fff;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      width: calc(33.33% - 20px);
+      box-sizing: border-box;
+    }
+
+    .campaign-card:hover, .event-card:hover {
+      transform: scale(1.05);
+    }
+
+    .create-campaign-card {
+      background-color: #fff;
+      padding: 20px;
+      border: 2px dashed #008080;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      width: calc(33.33% - 20px);
+      box-sizing: border-box;
+    }
+
+    .create-campaign-card:hover {
+      border: 2px dashed #005555;
+    }
+
+    .create-campaign-icon {
+      font-size: 40px;
+      text-align: center;
+      color: #008080;
+    }
+
+    .campaign-form {
+      display: none;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      font-weight: bold;
+    }
+
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+    }
+
+    .form-group button {
+      background-color: #008080;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-group button:hover {
+      background-color: #005555;
+    }
+
+    @media (max-width: 768px) {
+      .campaign-card,
+      .event-card,
+      .create-campaign-card,
+      .campaign-form {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Organize a Campaign</h1>
+
+    <!-- Your Campaigns Section -->
+    <div class="your-campaigns">
+      <!-- Campaign Cards will appear here -->
+      <div class="campaign-card">
+        <p><b>Organization Name:</b> ABC Foundation</p>
+        <p><b>Campaign Name:</b> Blood Donation Drive</p>
+        <p><b>Description:</b> Join us for a life-saving blood donation drive.</p>
+        <p><b>Type:</b> Blood Donation</p>
+        <p><b>Location:</b> Central Park</p>
+        <p><b>Timing:</b> 10:00 AM - 4:00 PM</p>
+      </div>
+
+      <!-- Event Card -->
+      <div class="event-card">
+        <p><b>Event Name:</b> Community Cleanup</p>
+        <p><b>Description:</b> Help clean up our community for a cleaner and greener environment.</p>
+        <p><b>Location:</b> City Square</p>
+        <p><b>Timing:</b> 9:00 AM - 1:00 PM</p>
+      </div>
+    </div>
+
+    <!-- Create a Campaign Card -->
+    <div class="create-campaign-card" onclick="toggleCampaignForm()">
+      <div class="create-campaign-icon">+</div>
+      <p>Create a Campaign</p>
+    </div>
+
+    <!-- Campaign Form -->
+    <div class="campaign-form" id="campaignForm">
+      <form action="#" method="post">
+        <div class="form-group">
+          <label for="organizationName">Organization Name:</label>
+          <input type="text" id="organizationName" name="organizationName" required>
+        </div>
+
+        <div class="form-group">
+          <label for="campaignName">Campaign Name:</label>
+          <input type="text" id="campaignName" name="campaignName" required>
+        </div>
+
+        <div class="form-group">
+          <label for="campaignDescription">Description:</label>
+          <textarea id="campaignDescription" name="campaignDescription" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="campaignType">Type of Campaign:</label>
+          <select id="campaignType" name="campaignType" required>
+            <option value="bloodDonation">Blood Donation</option>
+            <option value="petAdoption">Pet Adoption</option>
+            <!-- Add more types as needed -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="campaignLocation">Location:</label>
+          <input type="text" id="campaignLocation" name="campaignLocation" required>
+        </div>
+
+        <div class="form-group">
+          <label for="campaignTiming">Timing:</label>
+          <input type="text" id="campaignTiming" name="campaignTiming" required>
+        </div>
+
+        <div class="form-group">
+          <button type="button" onclick="submitCampaign()">Submit Campaign</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function toggleCampaignForm() {
+      const campaignForm = document.getElementById('campaignForm');
+      campaignForm.style.display = campaignForm.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function submitCampaign() {
+      // Get values from the form
+      const organizationName = document.getElementById('organizationName').value;
+      const campaignName = document.getElementById('campaignName').value;
+      const description = document.getElementById('campaignDescription').value;
+      const type = document.getElementById('campaignType').value;
+      const location = document.getElementById('campaignLocation').value;
+      const timing = document.getElementById('campaignTiming').value;
+
+      // Create a new campaign card
+      const newCampaignCard = document.createElement('div');
+      newCampaignCard.className = 'campaign-card';
+      newCampaignCard.innerHTML = `
+        <p><b>Organization Name:</b> ${organizationName}</p>
+        <p><b>Campaign Name:</b> ${campaignName}</p>
+        <p><b>Description:</b> ${description}</p>
+        <p><b>Type:</b> ${type}</p>
+        <p><b>Location:</b> ${location}</p>
+        <p><b>Timing:</b> ${timing}</p>
+      `;
+
+      // Append the new campaign card to the "Your Campaigns" section
+      document.querySelector('.your-campaigns').appendChild(newCampaignCard);
+
+      // Clear the form fields
+      document.getElementById('organizationName').value = '';
+      document.getElementById('campaignName').value = '';
+      document.getElementById('campaignDescription').value = '';
+      document.getElementById('campaignType').value = 'bloodDonation'; // Set default type
+      document.getElementById('campaignLocation').value = '';
+      document.getElementById('campaignTiming').value = '';
+
+      // Hide the campaign form
+      toggleCampaignForm();
+    }
+  </script>
+
+</body>
+</html>
