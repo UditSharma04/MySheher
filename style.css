@@ -1,31 +1,31 @@
-
-.landing-page-v-1-desktop,
-.landing-page-v-1-desktop * {
-  box-sizing: border-box;
+html{
+  height: 100%;
+  width: auto;
+  position: absolute;
 }
-.landing-page-v-1-desktop {
-  background: var(--neutral-zircon, #f8f9ff);
-  display: flex;
-  flex-direction: column;
-  gap: 0px;
-  align-items: center;
-  justify-content: flex-start;
+body{
+  height: 100%;
   width: 100%;
   position: relative;
-  overflow: hidden;
 }
+/* 
+
+.landing-page-v-1-desktop,
+/* .landing-page-v-1-desktop * {
+  box-sizing: border-box;
+} */ */
+
 .navbar {
   background: #eef9f4;
   padding: 20px 50px 20px 50px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   align-self: stretch;
-  flex-shrink: 0;
   position: relative;
 }
-.logo {
+/* .logo {
   display: flex;
   flex-direction: row;
   gap: 6px;
@@ -33,7 +33,7 @@
   justify-content: flex-start;
   flex-shrink: 0;
   position: relative;
-}
+} */
 .logo-mark {
   flex-shrink: 0;
   width: 32px;
@@ -195,7 +195,7 @@
   position: relative;
   align-self: stretch;
 }
-.build-beautiful-landing-pages-in-record-time-with-anima-s-landing-page-ui-kit-for-figma-no-code-required {
+.header-text {
   color: var(--onboardingbackgroundgrey, #2d2d2d);
   text-align: left;
   font-family: var(--body-l-font-family, "Mulish-Regular", sans-serif);
@@ -362,7 +362,7 @@
   font-weight: var(--display-m-font-weight, 700);
   position: relative;
 }
-.few-good-reasons-why-you-should-use-anima-landing-page-ui-kit-to-make-your-own-pages {
+.feature-text {
   color: #2d2d2d;
   text-align: center;
   font-family: var(--body-m-font-family, "Mulish-Regular", sans-serif);
@@ -656,7 +656,7 @@
   position: relative;
   align-self: stretch;
 }
-.see-how-our-landing-page-ui-kit-is-making-an-impact {
+.testinomial-text {
   color: #2d2d2d;
   text-align: center;
   font-family: "Mulish-Regular", sans-serif;
@@ -1159,10 +1159,14 @@
 }
 
 .j{
+  position: relative;
   display: flex;
-  margin-top: 70px;
+  width: 100%;
+  margin: 70px auto 0 auto;
   flex-direction: row;
+  /* margin-left: 13%; */
   justify-content: space-around;
+
 }
 .profileimage img{
   margin-right: 45px;
@@ -1198,3 +1202,19 @@
   padding-right: 3px;
   padding-left: 3px;
 }
+
+ @media only screen and (max-width: 354px) {
+  .j{
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .header{
+    margin-bottom: 50px;
+  }
+  .logos{
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 383px;
+  }
+} 
