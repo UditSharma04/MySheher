@@ -11,23 +11,35 @@
     >
     </script>
     <script>
-      // JavaScript function to handle redirection
       function redirectToIndexPage() {
           try {
-              // Redirect to index.html
               window.location.href = 'index.html';
           } catch (error) {
               console.error('Error:', error);
           }
       }
+      function darkMode() {
+			var element = document.body;
+			element.classList.toggle("dark-mode");
+		}
   </script>
   </head>
   <body>
-    <div class="container">
+    <img src="../logo/logo.png " alt ="My-Sheher-Logo" class="logo">
+    <label class="container">
+      <input type="checkbox" id="toggle" />
+      <span class="slider round" onclick="darkMode()">
+        <div class="background"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+      </span>
+    </label>
+    <div class="main-container">
+      
       <div class="forms-container">
         <div class="signin-signup">
           <form action="../index.html" class="sign-in-form">
-            <h2 class="title">Sign In</h2>
+            <h2 class="title">Sign In As A Citizen</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
               <input type="text" placeholder="Username" />
@@ -112,7 +124,30 @@
         </div>
       </div>
     </div>
-
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from '../firebase/app';
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyBbwBv5puvQ2awYSCJd6MHiGXizwmCp9eM",
+        authDomain: "mysheher-fc211.firebaseapp.com",
+        projectId: "mysheher-fc211",
+        storageBucket: "mysheher-fc211.appspot.com",
+        messagingSenderId: "782357885725",
+        appId: "1:782357885725:web:26f35c641d94ab3e13e7f4",
+        measurementId: "G-1XBYJQRGV8"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      console.log(app);
+    </script>
     <script src="./app.js"></script>
   </body>
 </html>

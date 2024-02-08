@@ -79,6 +79,7 @@ header {
 
 .action_btn{
     background-color: orange;
+    background-color: orange;
     color: black;
     padding: 0.5rem 1rem;
     border: none;
@@ -118,6 +119,8 @@ header {
 
 .dropdown_menu.open{
     height: 200px;
+    z-index: 34;
+    
 }
 
 .dropdown_menu li{
@@ -140,6 +143,7 @@ header {
 
 .contributeSection{
     position: relative;
+    
     display: flex;
     width: auto;
     margin-top: 70px;
@@ -214,7 +218,7 @@ header {
 /* NGO Bar */
 
 .logo-bar {
-    padding: 140px 55px 60px 55px;
+    padding: 90px 0 0 0 ;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -893,6 +897,12 @@ header {
     .citizen,.volunteer{
         scale: 0.8;
     }
+    .contributeSection{
+        height: 727px;
+    }
+    .logo-bar{
+        padding-top: 45px;
+    }
 }
 @media only screen and (max-width: 563px){
     .citizen,.volunteer{
@@ -910,32 +920,58 @@ header {
     }
 }
 @media only screen and (max-width: 450px){
-    .citizen,.volunteer{
+    .citizen{
         scale: 0.6;
+        top: 0px;
+    }
+    .volunteer{
+        scale: 0.6;
+        top: -62px;
+    }
+    .contributeSection{
+        height: 638px;
     }
 }
 @media only screen and (max-width: 425px){
     .html {
         width: 1200px;
     }
-    .citizen,.volunteer{
+    .citizen{
         scale: 0.5;
+        top: 55px;
+    }
+    .volunteer{
+        scale: 0.5;
+        top: -134px;
     }
     .button{
         flex-direction: column;
     }
+    .contributeSection{
+        margin-left: 6px;
+        height: 500px;
+    }
+    .logo-header{
+        font-size: 30px;
+    }
 } 
 @media only screen and (max-width: 345px){
     .html {
-        width: 1200px;
+        width: 100%;
     }
     .contributeSection{
+        height: 404px;
         gap: 0px;
     }
-
-    .citizen,.volunteer{
+    .citizen{
         scale: 0.4;
+        top: 77px;
     }
+    .volunteer{
+        scale: 0.4;
+        top: -160px;
+    }
+
     .button{
         flex-direction: column;
     }
@@ -1035,6 +1071,13 @@ header {
     .member-card3,
     .member-card4{
         scale: 0.7;
+    }
+    .button{
+        flex-direction: column;
+        
+    }
+    .button btn1,btn2{
+        width: 100%;
     }
 }
 
