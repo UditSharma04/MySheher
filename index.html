@@ -9,13 +9,14 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <title>My Sheher</title>
 </head>
+
 <body>
     <header>
         <div class="mynavbar">
             <div class="logo"><img src="Images\logo.png" alt=""></div>
             <div class="linkbar">
                 <ul class="links">
-                    <li><a href="ll">About Us</a></li>
+                    <li><a href=".team">About Us</a></li>
                     <li><a href="services">Sevices</a></li>
                     <li><a href="contacts">Contacts</a></li>
                     <a onclick="redirectToLoginPage()" class="action_btn">Get Started</a>
@@ -27,15 +28,15 @@
         </div>
 
         <div class="dropdown_menu">
-            <li><a href="ll">About Us</a></li>
-                <li><a href="services">Sevices</a></li>
-                <li><a href="contacts">Contacts</a></li>
-                <li> <a href="" class="action_btn">Get Started</a></li>
+            <li><a href="#myCFeatures">Sevices</a></li>
+            <li><a href="#myTestinomials">Reviews</a></li>
+            <li><a href="#myTeam">About Us</a></li>
+            <li><a href="login\login.html" class="action_btn">Get Started</a></li>
         </div>
     </header>
 
 
-    <div class="contributeSection">
+    <div class="contributeSection" id="myContributeSection">
         <div class="citizen">
             <div class="textPart">
                 <div class="heading">
@@ -86,7 +87,7 @@
         </div>
     </div>
 
-    <div class="logo-bar">
+    <div class="logo-bar" id="myLogoBar">
         <div class="logo-header">NGOs Collaborated</div>
         <div class="logos">
             <div>
@@ -111,7 +112,7 @@
         </div>
     </div>
 
-    <div class="features">
+    <div class="features" id="myCFeatures">
         <div class="head-text">
             <div class="features-header">
                 Features for citizen
@@ -401,7 +402,7 @@
         </div>
     </div>
 
-    <div class="features">
+    <div class="features" id="myVFeatures">
         <div class="head-text">
             <div class="features-header">
                 Features for vlounteer
@@ -693,7 +694,7 @@
         </div>
     </div>
 
-    <div class="metrics">
+    <div class="metrics" id="myMetrics">
         <div class="head-text">
             <div class="metrics-header">
                 Our Metrics Tell the Story
@@ -728,7 +729,7 @@
         </div>
     </div>
 
-    <div class="testimonials">
+    <div class="testimonials" id="myTestinomials">
         <div class="head-text">
             <div class="testimonials-header">
                 Real Stories from Satisfied Customers
@@ -1054,7 +1055,7 @@
         </div>
     </div>
    
-    <div class="team">
+    <div class="team" id="myTeam">
         <div class="head-text">
             <div class="team-header">Meet our team</div>
             <div class="team-text">
