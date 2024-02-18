@@ -881,6 +881,11 @@ header {
     }
 }
 
+
+
+/* Contribute Section Resposiveness  */
+
+
 @media only screen and (max-width:1357px) {
     .contributeSection{
         flex-direction: column;
@@ -939,7 +944,7 @@ header {
     }
     .citizen{
         scale: 0.5;
-        top: 55px;
+        top: 101px;
     }
     .volunteer{
         scale: 0.5;
@@ -979,6 +984,10 @@ header {
 
 } 
 
+
+
+/* Logo Bar Responsiveness */
+
 @media only screen and (max-width: 1151px){
     .logos{
         flex-direction: column;
@@ -994,6 +1003,9 @@ header {
 }
 
 
+
+/* Feature Section Responsiveness */
+
 @media only screen and (max-width: 470px){
     .feature-card{
         scale: 0.85;
@@ -1006,6 +1018,9 @@ header {
     }
 }
 
+
+/* Metric Section Responsivness */
+
 @media only screen and (max-width: 490px){
     .metrics-content div{
         flex-direction: column;
@@ -1014,6 +1029,10 @@ header {
         scale: 0.8;
     }
 }
+
+
+
+/* Team Section Responsivenexxx */
 
 @media only screen and (max-width: 1085px){
     .cards-row2{
