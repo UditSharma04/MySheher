@@ -1,0 +1,359 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 15px;
+    background-color: #d6d6d6;
+    border-radius: 12px;
+    border: 2px solid black;
+    margin: 8px;
+}
+
+.logo {
+    margin-right: auto;
+
+}
+
+.logo img {
+    height: 50px;
+}
+
+.nav__links {
+    list-style: none;
+    display: flex;
+}
+
+.nav__links a,
+.cta,
+.overlay__content a {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    color: #000000;
+    text-decoration: none;
+}
+
+.nav__links li {
+    padding: 0px 20px;
+}
+
+.nav__links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav__links li a:hover {
+    color: #0088a9;
+}
+
+.cta {
+    margin-left: 20px;
+    padding: 9px 25px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+  }
+  #Contact{
+    background-color: #008fb3;
+    transform: scale(1);
+  }
+  #Contact:hover{
+    transform: scale(1.1);
+  }
+.cta:hover {
+    transform: scale(1.2);
+}
+
+/* Mobile Nav */
+
+.menu {
+    display: none;
+}
+
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-color: #e8e8e8;
+    overflow-x: hidden;
+    transition: all 0.5s ease 0s;
+}
+
+.overlay--active {
+    width: 100%;
+}
+
+.overlay__content {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay a {
+    padding: 15px;
+    font-size: 36px;
+    display: block;
+    transition: all 0.3s ease 0s;
+}
+
+.overlay a:hover,
+.overlay a:focus {
+    color: #005f77;
+}
+
+.overlay .close {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+    color: #000000;
+    cursor: pointer;
+}
+
+
+@media screen and (max-height: 450px) {
+    .overlay a {
+        font-size: 20px;
+    }
+
+    .overlay .close {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+    
+}
+
+@media only screen and (max-width: 800px) {
+
+    .nav__links,
+    .cta {
+        display: none;
+    }
+
+    .menu {
+        display: initial;
+    }
+    
+}
+@media (max-width: 800px) {
+    .main-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form-container {
+        width: 100%; /* Ensure the form container takes up full width */
+        max-width: 100%; /* Override any max-width set earlier */
+        padding: 20px; /* Adjust padding if necessary */
+    }
+    #raise-img{
+        display: none;
+    }
+    
+
+    .nav__links, .cta {
+        display: none;
+    }
+
+    .menu {
+        display: block; /* Ensure the menu icon is displayed */
+    }
+}
+@media (max-width:450px){
+    #raise-img{
+        display: none;
+    }
+    .main-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form-container {
+        width: 100%; /* Ensure the form container takes up full width */
+        max-width: 100%; /* Override any max-width set earlier */
+        padding: 20px; /* Adjust padding if necessary */
+    }
+
+    .image-container {
+        display: none; /* Hide the image on smaller screens */
+    }
+}
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    /* Use the viewport height to ensure full height */
+    margin: 0;
+    /* Reset default margin */
+}
+
+.main-content {
+    flex: 1;
+    /* Takes up all available space between header and footer */
+}
+
+footer {
+    width: 100%;
+    background-color: #f2f2f2;
+    /* Example background color */
+    padding: 10px 0;
+    /* Add some padding */
+}
+
+.footer-container {
+    display: flex;
+    align-items: center;
+    /* Align items vertically */
+    justify-content: space-between;
+    /* Space between image and text */
+    width: 100%;
+    margin: 0 auto;
+    /* Center the container */
+    padding: 0 15px;
+    /* Padding on the sides */
+}
+
+.footer-img img {
+    height: 50px;
+    /* Example height, adjust as needed */
+    width: auto;
+    /* Maintain aspect ratio */
+}
+
+.footer-text {
+    font-size: 16px;
+    /* Example font size */
+    color: #333;
+    /* Example text color */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    /* Adds space between the form and image */
+}
+
+.form-container {
+    background-color: lightgrey;
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1;
+    /* Allows the form container to grow as needed */
+    max-width: 500px;
+    /* Maximum width of the form container */
+}
+
+.image-container {
+    flex: 1;
+    /* Allows the image container to grow as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    /* Maximum width of the image container */
+}
+
+.image-container img {
+    width: 100%;
+    /* Make the image fully occupy its container */
+    height: auto;
+    /* Maintain aspect ratio */
+    border-radius: 8px;
+    /* Optional: Adds rounded corners to the image */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* Adds space between form elements */
+}
+
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    /* Light grey border */
+}
+
+button[type="submit"] {
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+#title {
+    font-size: 1.4em;
+    font-weight: bold;
+    font-family: "Montserrat", sans-serif;
+}
+
+label,
+#place-holder {
+    font-family: "Montserrat", sans-serif;
+}
+
+.image-container {
+    text-align: center;
+    margin: 0px 100px;
+
+    img {
+        height: auto;
+    }
+}
+
+textarea {
+    resize: none;
+}
+.alert{
+    width: 100%;
+    background: rgb(0, 255, 106);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 900;
+    display: none;
+}

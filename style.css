@@ -119,7 +119,7 @@ header {
 }
 
 .dropdown_menu.open{
-    height: 200px;
+    height: fit-content;
     z-index: 34;
     
 }

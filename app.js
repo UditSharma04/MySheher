@@ -15,7 +15,11 @@ function redirectToContactPage() {
     // Redirect to contact.html
     window.location.href = 'contact.html';
 }
-function redirectToLoginPage() {
+function redirectToLoginPageV() {
   // Redirect to login.html
-  window.location.href = './login/login.html';
+  window.location.href = './loginV/login.html';
+}
+function redirectToLoginPageC() {
+  // Redirect to login.html
+  window.location.href = './loginC/login.html';
 }

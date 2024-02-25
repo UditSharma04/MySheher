@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Raise a Complaint</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="raise.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <a class="logo" href="/"><img src="images/logo (1).png" alt="logo"></a>
+        <nav>
+            <ul class="nav__links">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Activity</a></li>
+            </ul>
+        </nav>
+        <a class="cta Contact" href="#" id="Contact">Contact Us</a>
+        <p class="menu cta"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="30px" height="30px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" id="Editable-line"
+                version="1.1" xml:space="preserve">
+                <line fill="none" id="XMLID_103_" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-miterlimit="10" stroke-width="2" x1="7" x2="25" y1="16" y2="16" />
+                <line fill="none" id="XMLID_102_" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-miterlimit="10" stroke-width="2" x1="7" x2="25" y1="25" y2="25" />
+                <line fill="none" id="XMLID_101_" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-miterlimit="10" stroke-width="2" x1="7" x2="25" y1="7" y2="7" />
+            </svg></p>
+    </header>
+    <div class="main-content">
+        <div id="mobile__menu" class="overlay">
+            <a class="close">&times;</a>
+            <div class="overlay__content">
+                <a href="./index.html">Home</a>
+                <a href="#">Services</a>
+                <a href="#">Activity</a>
+            </div>
+        </div>
+        <div class="main-container">
+            <div class="form-container">
+                <form action="#" method="post" id="contactForm">
+                    <div class="alert">Your message sent</div>
+                    <p id="title">Raise a Complaint</p>
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="name" name="fullName" required>
+
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" required>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="problemType">Type of Problem</label>
+                    <select id="problemType" name="problemType" required>
+                        <option value="" id="place-holder">Select a problem type</option>
+                        <option value="electrical">Electrical</option>
+                        <option value="civil">Civil</option>
+                        <option value="medical">Medical</option>
+                        <option value="miscellaneous">Miscellaneous</option>
+                        <option value="it">IT</option>
+                    </select>
+
+                    <label for="problemDescription">Problem Description</label>
+                    <textarea oninput="autoGrowTextArea(this)" id="problemDescription" name="problemDescription"
+                        required></textarea>
+
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="image-container">
+                <img src="./images/download (2)_edited.png" alt="Raise a complaint" id="raise-img">
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-img">
+                <img src="./images/logo (1).png" alt="Footer Image">
+            </div>
+            <div class="footer-text">
+                © 2024 by MySheher.
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script type="text/javascript" src="raise.js"></script>
+    <script>
+        function autoGrowTextArea(textarea) {
+            textarea.style.height = "auto"; // Reset the height
+            textarea.style.height = textarea.scrollHeight + "px"; // Set it to the current scroll height
+        }
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+        import { getDatabase, ref, push, update } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+  apiKey: FIREBASE_API_KEY,
+  authDomain: "my-sheher-a0e72.firebaseapp.com",
+  databaseURL: "https://my-sheher-a0e72-default-rtdb.firebaseio.com",
+  projectId: "my-sheher-a0e72",
+  storageBucket: "my-sheher-a0e72.appspot.com",
+  messagingSenderId: "728972644386",
+  appId: "1:728972644386:web:f2d4d6cf630aaf57d47a7b",
+  measurementId: "G-N73SMVFTC4"
+};
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+    
+        // Wait for Firebase to load before accessing the database
+        window.addEventListener('load', () => {
+            document.getElementById("contactForm").addEventListener("submit", submitForm);
+        });
+    
+        function submitForm(e) {
+            e.preventDefault();
+    
+            // Capture the form data
+            var name = getElementVal("name");
+            console.log(name);
+            var address = getElementVal("address");
+            console.log(address);
+            var email = getElementVal("email");
+            console.log(email);
+            var problemDescription = getElementVal("problemDescription");
+            console.log(problemDescription);
+            var problemType = getElementVal("problemType");
+            console.log(problemType);
+            // Save the form data to Firebase
+            saveMessages(name, address, email, problemDescription,problemType);
+    
+            // Display the alert and reset the form
+            document.querySelector(".alert").style.display = "block";
+            setTimeout(() => {
+                document.querySelector(".alert").style.display = "none";
+            }, 3000);
+            document.getElementById("contactForm").reset();
+        }
+    
+        const getElementVal = (id) => {
+            return document.getElementById(id).value;
+        };
+    
+        function saveMessages(name, address, email, problemDescription,problemType) {
+            const newContactFormRef = ref(database, 'contactForm');
+            const newContactFormKey = push(newContactFormRef).key;
+    
+            // Define the data to save
+            const data = {
+                name: name,
+                address: address,
+                email: email,
+                problemDescription: problemDescription,
+                problemType: problemType,
+            };
+    
+            // Create a new record in the database
+            const updates = {};
+            updates['/Raise-Complaint-Form/' + newContactFormKey] = data;
+    
+            return update(ref(database), updates);
+        }
+    </script>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Show Campaigns</title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./style.css" />
+  <link
+    href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap"
+    rel="stylesheet"
+  />
+</head>
+
+<body>
+  <header>
+    <a class="logo" href="/"><img src="images/logo (1).png" alt="logo" /></a>
+    <nav>
+      <ul class="nav__links">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Activity</a></li>
+      </ul>
+    </nav>
+    <a class="cta Contact" href="#" id="Contact">Contact Us</a>
+    <p class="menu cta">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="30px"
+        height="30px"
+        viewBox="0 0 32 32"
+        enable-background="new 0 0 32 32"
+        id="Editable-line"
+        version="1.1"
+        xml:space="preserve"
+      >
+        <line
+          fill="none"
+          id="XMLID_103_"
+          stroke="#000000"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-miterlimit="10"
+          stroke-width="2"
+          x1="7"
+          x2="25"
+          y1="16"
+          y2="16"
+        />
+        <line
+          fill="none"
+          id="XMLID_102_"
+          stroke="#000000"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-miterlimit="10"
+          stroke-width="2"
+          x1="7"
+          x2="25"
+          y1="25"
+          y2="25"
+        />
+        <line
+          fill="none"
+          id="XMLID_101_"
+          stroke="#000000"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-miterlimit="10"
+          stroke-width="2"
+          x1="7"
+          x2="25"
+          y1="7"
+          y2="7"
+        />
+      </svg>
+    </p>
+  </header>
+  <div class="main-content">
+    <div id="mobile__menu" class="overlay">
+      <a class="close">&times;</a>
+      <div class="overlay__content">
+        <a href="./index.html">Home</a>
+        <a href="#">Services</a>
+        <a href="#">Activity</a>
+      </div>
+    </div>
+    <div class="wrap">
+      <p>Area Name</p>
+      <br />
+      <input type="text" id="areaName" placeholder="area name" />
+      <p>Enter The latitude</p>
+      <br />
+      <input type="number" id="latitude" placeholder="latitude" />
+      <p>Enter The latitude</p>
+      <br />
+      <input type="number" id="longitude" placeholder="longitude" />
+      <br />
+      <button id="storeCords">Add</button>
+      <br />
+      <button type="button" id="deleteCords">Remove</button>
+      <br />
+      <div id="map"></div>
+    </div>
+    <div>
+      <table>
+        <thead>
+          <th>Sno</th>
+          <th>Recycling Spot</th>
+        </thead>
+        <tbody id="tbody1"></tbody>
+      </table>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-img">
+        <img src="./images/logo (1).png" alt="Footer Image" />
+      </div>
+      <div class="footer-text">© 2024 by MySheher.</div>
+    </div>
+  </footer>
+
+  <script type="text/javascript" src="mobile.js"></script>
+  <script type="module">
+    // Table Function Js
+    var arNo = 0;
+    var tbody = document.getElementById("tbody1");
+    function AddItemToTable(areaName, lat, lng) {
+      let trow = document.createElement("tr");
+      let td1 = document.createElement("td");
+      let td2 = document.createElement("td");
+
+      td1.innerHTML = ++arNo;
+      td2.innerHTML = areaName;
+
+      trow.appendChild(td1);
+      trow.appendChild(td2);
+
+      tbody.appendChild(trow);
+    }
+
+    function AddAllItemsToTable(TheAreaName) {
+      arNo = 0;
+      tbody.innerHTML = "";
+      TheAreaName.forEach((element) => {
+        AddItemToTable(element.areaName, element.Latitude, element.Longitude);
+      });
+    }
+
+    // Firebase Firestore part
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+
+    const firebaseConfig = {
+      apiKey: FIREBASE_API_KEY,
+      authDomain: "my-sheher-a0e72.firebaseapp.com",
+      databaseURL: "https://my-sheher-a0e72-default-rtdb.firebaseio.com",
+      projectId: "my-sheher-a0e72",
+      storageBucket: "my-sheher-a0e72.appspot.com",
+      messagingSenderId: "728972644386",
+      appId: "1:728972644386:web:f2d4d6cf630aaf57d47a7b",
+      measurementId: "G-N73SMVFTC4",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    import {
+      getFirestore,
+      doc,
+      getDoc,
+      getDocs,
+      setDoc,
+      onSnapshot,
+      collection,
+      addDoc,
+      updateDoc,
+      deleteDoc,
+      deleteField,
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const db = getFirestore();
+
+    //Refrences
+
+    let areaName = document.getElementById("areaName");
+    let latitude = document.getElementById("latitude");
+    let longitude = document.getElementById("longitude");
+
+    let storeCords = document.getElementById("storeCords");
+    let deleteCords = document.getElementById("deleteCords");
+
+    //Functions
+
+    //Adding Data
+    async function AddData() {
+      var ref = doc(db, "Recycling Spots", areaName.value);
+
+      const docRef = await setDoc(ref, {
+        areaName: areaName.value,
+        Latitude: latitude.value,
+        Longitude: longitude.value,
+      })
+        .then(() => {
+          alert("Location Added Successfully");
+        })
+        .catch((error) => {
+          alert("Unsuccessful operation,error:" + error);
+        });
+    }
+
+    //Deleting Data
+    async function RemoveData() {
+      var ref = doc(db, "Recycling Spots", areaName.value);
+
+      try {
+        const docSnap = await getDoc(ref);
+
+        if (!docSnap.exists()) {
+          alert("No such recycling spots available");
+          return;
+        }
+
+        await deleteDoc(ref);
+        alert("Recycling spot removed from list");
+      } catch (error) {
+        alert("Unsuccessful operation, error: " + error);
+      }
+    }
+
+    // Getting all data for table function
+    async function GetAllDataRealtime() {
+      const dbRef = collection(db, "Recycling Spots");
+
+      onSnapshot(dbRef, (querySnapshot) => {
+        var areaNames = [];
+
+        querySnapshot.forEach((doc) => {
+          areaNames.push(doc.data());
+        });
+        AddAllItemsToTable(areaNames);
+      });
+    }
+    window.onload = GetAllDataRealtime;
+
+    storeCords.addEventListener("click", AddData);
+    deleteCords.addEventListener("click", RemoveData);
+  </script>
+
+
+  <!-- Google Maps config -->
+  <script>
+    ((g) => {
+      var h,
+        a,
+        k,
+        p = "The Google Maps JavaScript API",
+        c = "google",
+        l = "importLibrary",
+        q = "__ib__",
+        m = document,
+        b = window;
+      b = b[c] || (b[c] = {});
+      var d = b.maps || (b.maps = {}),
+        r = new Set(),
+        e = new URLSearchParams(),
+        u = () =>
+          h ||
+          (h = new Promise(async (f, n) => {
+            await (a = m.createElement("script"));
+            e.set("libraries", [...r] + "");
+            for (k in g)
+              e.set(
+                k.replace(/[A-Z]/g, (t) => "_" + t[0].toLowerCase()),
+                g[k]
+              );
+            e.set("callback", c + ".maps." + q);
+            a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
+            d[q] = f;
+            a.onerror = () => (h = n(Error(p + " could not load.")));
+            a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+            m.head.append(a);
+          }));
+      d[l]
+        ? console.warn(p + " only loads once. Ignoring:", g)
+        : (d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)));
+    })({ key:API_KEY, v: "weekly" });
+  </script>
+  <script type="module" src="v.js"></script>
+</body>
