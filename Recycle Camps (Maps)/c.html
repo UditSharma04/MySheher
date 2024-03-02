@@ -223,7 +223,7 @@
       d[l]
         ? console.warn(p + " only loads once. Ignoring:", g)
         : (d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)));
-    })({ key:API_KEY, v: "weekly" });
+    })({ key:GMAPS_API_KEY, v: "weekly" });
   </script>
   <script type="module" src="c.js"></script>
 </body>
